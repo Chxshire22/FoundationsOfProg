@@ -78,8 +78,9 @@ int main() {
 2. Declare a variable that holds the addition of each iteration. Name this container 3.
 3. Request user to input number of iterations. Must be positive integer.
 4. Start a loop that adds the two declared iterations and store into container 3. Counter must start at 3 as the first 2 iterations are already established.
-5. Swap the values of container 3 and container 1. Now the latest 2 numbers are stored in container 1 and container 2.
-6. Continue loop.
+5. Print container 3's value for the iteration.
+6. Swap the values of container 3 and container 1. Now the latest 2 numbers are stored in container 1 and container 2.
+7. Continue loop until counter reaches iteration number.
 
 - Flowchart
 
