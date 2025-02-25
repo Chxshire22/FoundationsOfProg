@@ -140,7 +140,7 @@ int main() {
 
 ## Lab 6
 
-### Algorithm & Flowchart
+### Algorithm
 
 - Algorithm
 
@@ -150,8 +150,6 @@ int main() {
 4. Execute function for average that takes 3 arguments which are the inputs, and averaged by 3. Not programming dynamically so hardcode the number 3. Store the result in the "average" pointer and print it.
 5. Execute function for "differences". Take arguments for max and min input values, and the average value. Print the differences between max and min, and between max and average.
 6. Execute function for "absolute". Function only takes the min input value. If input value is 0 or higher just print that number. If not multiply by -1 and print that number as absolute value.
-
-### Test Case
 
 ### Programming
 
