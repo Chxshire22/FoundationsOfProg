@@ -79,7 +79,7 @@ int main() {
 3. Request user to input number of iterations. Must be positive integer.
 4. Start a loop that adds the two declared iterations and store into container 3. Counter must start at 3 as the first 2 iterations are already established.
 5. Print container 3's value for the iteration.
-6. Swap the values of container 3 and container 1. Now the latest 2 numbers are stored in container 1 and container 2.
+6. Copy container 2 into container 1 & copy container 3 into container 2.
 7. Continue loop until counter reaches iteration number.
 
 - Flowchart
@@ -131,3 +131,7 @@ int main() {
   return 0;
 }
 ```
+
+## Lab 6
+
+### Algorithm & Flowchart
