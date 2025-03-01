@@ -31,39 +31,56 @@ void popArr(float arr[], int len);
 int looping(float salaries[], int condition, int len);
 void findMax(float *salary, float *container);
 void findMin(float *salary, float *container);
-void findAvg(float *salary, float *container, int len);
+void findSum(float *salary, float *container);
+int searchUnderS(float salaries[], float sInput, int len);
 
 int main() {
   // prompt user to input salaries 10 times and input into salary array
 
-  float salaries[10];  // store arr of salaries
-  int s = 0;           // store the input value of s
+  float salaries[10]; // store arr of salaries
+  float sInput = 0;   // store the input value of s
   int len = 0;
-  len = sizeof(salaries) / sizeof(float);  // size of array
+  float max = 0;
+  float min = 0;
+  float avg = 0;
+  int lowerThanSCount = 0;
+  len = sizeof(salaries) / sizeof(float); // size of array
 
-  popArr(salaries, len);  // populate the salary array
-  looping(salaries, 3, len);
+  popArr(salaries, len); // populate the salary array
+  max = looping(salaries, 1, len);
+  min = looping(salaries, 2, len);
+  avg = looping(salaries, 3, len) / (float)len;
+
+  printf("\n\n The max is: $%.2f", max);
+  printf("\n The min is: $%.2f", min);
+  printf("\n The average is: $%.2f", avg);
+
+  printf("\n Look for number of salaries under: $");
+  scanf("%f", &sInput);
+  lowerThanSCount = searchUnderS(salaries, sInput, len);
+  printf("\n There are %d salaries that are lower than %.2f.", lowerThanSCount,
+         sInput);
 
   return 0;
 }
 
 // function to populate array of salaries
 void popArr(float salaries[], int len) {
-  int counter = 0;  // declare counter;
+  int counter = 0; // declare counter;
   for (counter = 0; counter < len; counter++) {
-    float verifyContain = 0;  // container to verify that it's a valid input
-    printf("\n Please input a salary: $");  // prompt user to input salary
+    float verifyContain = 0; // container to verify that it's a valid input
+    printf("\n Please input a salary: $"); // prompt user to input salary
     if (scanf("%f", &verifyContain) != 1 || verifyContain <= 0) {
       printf("\n INVALID INPUT. TRY AGAIN\n");
       counter--;
-      while (getchar() !=
-             '\n');  // encountered an infinite loop. forums say use this line
-                     // which reads and discards characters in buffer until new
-                     // line which effectively discards everything in the
-                     // buffer. apparently scanf has a buffer, and when the
-                     // input is invalid, and i repeat the loop, the invalid
-                     // input is still in buffer so it will just keep fulfilling
-                     // the invalid input condition. IMPORTANT LINE
+      while (getchar() != '\n')
+        ; // encountered an infinite loop. forums say use this line
+          // which reads and discards characters in buffer until new
+          // line which effectively discards everything in the
+          // buffer. apparently scanf has a buffer, and when the
+          // input is invalid, and i repeat the loop, the invalid
+          // input is still in buffer so it will just keep fulfilling
+          // the invalid input condition. IMPORTANT LINE
     } else {
       salaries[counter] = verifyContain;
     }
@@ -72,20 +89,23 @@ void popArr(float salaries[], int len) {
 
 int looping(float salaries[], int condition, int len) {
   int counter = 0;
-  float container = 0;  // store the result to return to main loop for printing
+  float container = 0; // store the result to return to main loop for printing
   for (counter = 0; counter < len; counter++) {
-    if (condition == 1)  // find max
+    if (condition == 1) // find max
     {
-      findMax(&salaries[counter], &container);
+      findMax(&salaries[counter],
+              &container); // outsource to another function to compute max
     }
     if (condition == 2) {
-      findMin(&salaries[counter], &container);
+      findMin(&salaries[counter],
+              &container); // outsource to another function to compute min
     }
     if (condition == 3) {
-      findAvg(&salaries[counter], &container, len);
+      findSum(&salaries[counter],
+              &container); // outsource to another function to compute sum for
+                           // average
     }
   }
-  printf("%.2f", container);
   return container;
 }
 
@@ -103,7 +123,15 @@ void findMin(float *salary, float *container) {
   }
 }
 
-void findAvg(float *salary, float *container, int len) {
-  *container += *salary;
-  *container = *container / len;
+void findSum(float *salary, float *container) { *container += *salary; }
+
+int searchUnderS(float salaries[], float sInput, int len) {
+  int counter = 0;
+  int lowerThanSCount = 0;
+  for (counter = 0; counter < len; counter++) {
+    if (salaries[counter] < sInput) {
+      lowerThanSCount++;
+    }
+  }
+  return lowerThanSCount;
 }
