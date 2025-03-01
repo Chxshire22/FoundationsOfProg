@@ -28,28 +28,23 @@ underS. Use the established loop and an if…else statement to add 1 to underS
 
 // function prototypes
 void popArr(float arr[], int len);
-void findMax(int currentElement, int globalMax);
-int findLen(float arr[]);
-void looping(float arr[], int len);
+int looping(float salaries[], int condition, int len);
+void findMax(float *salary, float *container);
+void findMin(float *salary, float *container);
+void findAvg(float *salary, float *container, int len);
 
 int main() {
   // prompt user to input salaries 10 times and input into salary array
 
   float salaries[10];  // store arr of salaries
   int s = 0;           // store the input value of s
-
-  int len = findLen(salaries);  // length of array
+  int len = 0;
+  len = sizeof(salaries) / sizeof(float);  // size of array
 
   popArr(salaries, len);  // populate the salary array
+  looping(salaries, 3, len);
 
   return 0;
-}
-
-// function to find length of array
-int findLen(float salaries[]) {
-  int len = 0;
-  int len = sizeof(salaries) / sizeof(float);  // length of array
-  return len;
 }
 
 // function to populate array of salaries
@@ -75,12 +70,40 @@ void popArr(float salaries[], int len) {
   }
 }
 
-void findMax(int currentElement, int globalMax) {}
-
-void looping(float salaries[], int len, ) {
-  int counter = 0;  // declare counter
-
+int looping(float salaries[], int condition, int len) {
+  int counter = 0;
+  float container = 0;  // store the result to return to main loop for printing
   for (counter = 0; counter < len; counter++) {
-    findMax(salaries[counter], )
+    if (condition == 1)  // find max
+    {
+      findMax(&salaries[counter], &container);
+    }
+    if (condition == 2) {
+      findMin(&salaries[counter], &container);
+    }
+    if (condition == 3) {
+      findAvg(&salaries[counter], &container, len);
+    }
   }
+  printf("%.2f", container);
+  return container;
+}
+
+void findMax(float *salary, float *container) {
+  if (*container < *salary) {
+    *container = *salary;
+  }
+}
+void findMin(float *salary, float *container) {
+  if (*container == 0) {
+    *container = *salary;
+  }
+  if (*container > *salary) {
+    *container = *salary;
+  }
+}
+
+void findAvg(float *salary, float *container, int len) {
+  *container += *salary;
+  *container = *container / len;
 }
